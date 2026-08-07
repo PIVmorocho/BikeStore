@@ -13,11 +13,20 @@ USE BikeStore;
 GO
 
 /* =============================================================
-   TABLA: Categoria
+   Elimina las tablas existentes respetando el orden de las FK
+   (tablas hijas antes que tablas padre) para permitir reejecutar
+   este script sin errores.
    ============================================================= */
+IF OBJECT_ID(N'dbo.DetalleVenta', N'U') IS NOT NULL DROP TABLE dbo.DetalleVenta;
+IF OBJECT_ID(N'dbo.Venta', N'U') IS NOT NULL DROP TABLE dbo.Venta;
+IF OBJECT_ID(N'dbo.Bicicleta', N'U') IS NOT NULL DROP TABLE dbo.Bicicleta;
+IF OBJECT_ID(N'dbo.Cliente', N'U') IS NOT NULL DROP TABLE dbo.Cliente;
 IF OBJECT_ID(N'dbo.Categoria', N'U') IS NOT NULL DROP TABLE dbo.Categoria;
 GO
 
+/* =============================================================
+   TABLA: Categoria
+   ============================================================= */
 CREATE TABLE dbo.Categoria
 (
     IdCategoria    INT IDENTITY(1,1)      NOT NULL,
@@ -31,9 +40,6 @@ GO
 /* =============================================================
    TABLA: Bicicleta
    ============================================================= */
-IF OBJECT_ID(N'dbo.Bicicleta', N'U') IS NOT NULL DROP TABLE dbo.Bicicleta;
-GO
-
 CREATE TABLE dbo.Bicicleta
 (
     IdBicicleta    INT IDENTITY(1,1)      NOT NULL,
@@ -54,9 +60,6 @@ GO
 /* =============================================================
    TABLA: Cliente
    ============================================================= */
-IF OBJECT_ID(N'dbo.Cliente', N'U') IS NOT NULL DROP TABLE dbo.Cliente;
-GO
-
 CREATE TABLE dbo.Cliente
 (
     IdCliente      INT IDENTITY(1,1)      NOT NULL,
@@ -73,9 +76,6 @@ GO
 /* =============================================================
    TABLA: Venta
    ============================================================= */
-IF OBJECT_ID(N'dbo.Venta', N'U') IS NOT NULL DROP TABLE dbo.Venta;
-GO
-
 CREATE TABLE dbo.Venta
 (
     IdVenta        INT IDENTITY(1,1)      NOT NULL,
@@ -91,9 +91,6 @@ GO
 /* =============================================================
    TABLA: DetalleVenta
    ============================================================= */
-IF OBJECT_ID(N'dbo.DetalleVenta', N'U') IS NOT NULL DROP TABLE dbo.DetalleVenta;
-GO
-
 CREATE TABLE dbo.DetalleVenta
 (
     IdDetalle      INT IDENTITY(1,1)      NOT NULL,
