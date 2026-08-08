@@ -27,3 +27,7 @@ wwwroot/lib/
 # OS
 .DS_Store
 Thumbs.db
+
+# Local editor/assistant configuration (not shared via the repo)
+.claude/
+CLAUDE.md
